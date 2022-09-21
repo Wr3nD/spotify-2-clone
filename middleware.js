@@ -13,10 +13,14 @@ export async function middleware(req) {
         return NextResponse.next();
     }
     // redirect them to login if they dont have token AND are requesting a protected route
-    // const redirectUrl = origin + "/login";
-    // console.log("NAME", pathname);
-    // if (!token && pathname !== "/login") {
-    //     console.log(redirectUrl);
-    //     return NextResponse.redirect("/login");
-    // }
+    const redirectUrl = origin + "/login";
+    console.log("NAME", pathname);
+    if (!token && pathname !== "/login") {
+        console.log("REDIRECT", redirectUrl);
+        return NextResponse.redirect(redirectUrl);
+    }
 }
+
+export const config = {
+    matcher: "/",
+};
